@@ -12,7 +12,17 @@ production, gathering, costs, conversion, or balancing.
 | Influence | Represents political, cultural, and diplomatic reach. |
 | Logistics | Represents transport, supply capacity, and operational reach. |
 
-`ResourceStore` initializes these six stable identifiers at zero and exposes a
-read-only snapshot. A later approved milestone should define production sources,
-sinks, transactions, ownership namespaces, and tuning in data resources without
-coupling them to the HUD.
+Each resource is defined by a `ResourceDefinition` in `resources/economy/`.
+Player balances start at 350 Provisions, 300 Materials, 30 Craftsmanship,
+0 Knowledge, 25 Influence, and 20 Logistics. AI balances start at zero. Every
+balance is an integer between 0 and 2,000 inclusive.
+
+`ResourceStore` owns isolated entity inventories. Its `add`, `subtract`,
+`set_amount`, `try_consume`, and `try_transaction` methods are the write boundary.
+Multi-resource transactions validate all resulting balances before applying any
+change. Production, gathering, and gameplay costs remain deferred.
+
+HUD code reads `snapshot(entity)` or `get_amount(resource, entity)`. Snapshots are
+deep copies, so consumers cannot mutate store state. Consumers may subscribe to
+`resource_changed` for individual changes or `resources_changed` for atomic old
+and new snapshots; UI code must not reach into store internals.
