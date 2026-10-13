@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scripts/core/rts_camera.gd" id="1_camera"]
+[ext_resource type="Script" path="res://scripts/gameplay/demo_controller.gd" id="2_demo"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -26,6 +27,7 @@ size = Vector3(2, 2, 2)
 albedo_color = Color(0.68, 0.58, 0.34, 1)
 
 [node name="Main" type="Node3D"]
+script = ExtResource("2_demo")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_main")
