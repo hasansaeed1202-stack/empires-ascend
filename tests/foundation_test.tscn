@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://tests/foundation_test.gd" id="1_test"]
+[ext_resource type="Script" path="res://scripts/core/rts_camera.gd" id="2_camera"]
+
+[node name="FoundationTest" type="Node"]
+script = ExtResource("1_test")
+
+[node name="RTSCamera" type="Node3D" parent="."]
+script = ExtResource("2_camera")
+
+[node name="Camera3D" type="Camera3D" parent="RTSCamera"]
+position = Vector3(0, 14, 14)
+rotation_degrees = Vector3(-45, 0, 0)

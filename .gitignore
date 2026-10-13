@@ -1,0 +1,20 @@
+# Godot 4 generated files
+.godot/
+/.import/
+export/
+!export/
+export/*
+!export/.gitkeep
+
+# Exported builds and debug artifacts
+*.exe
+*.pck
+*.zip
+*.log
+
+# IDE and operating-system metadata
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+.DS_Store
