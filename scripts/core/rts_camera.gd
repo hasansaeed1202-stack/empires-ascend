@@ -57,18 +57,21 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _edge_pan_vector() -> Vector2:
-	if not get_viewport().get_visible_rect().has_point(get_viewport().get_mouse_position()):
+	var visible_rect := get_viewport().get_visible_rect()
+	return _edge_pan_vector_for_position(get_viewport().get_mouse_position(), visible_rect)
+
+
+func _edge_pan_vector_for_position(mouse_position: Vector2, visible_rect: Rect2) -> Vector2:
+	if not visible_rect.has_point(mouse_position):
 		return Vector2.ZERO
-	var viewport_size := get_viewport().get_visible_rect().size
-	var mouse_position := get_viewport().get_mouse_position()
 	var direction := Vector2.ZERO
-	if mouse_position.x <= edge_pan_margin:
+	if mouse_position.x <= visible_rect.position.x + edge_pan_margin:
 		direction.x -= 1.0
-	elif mouse_position.x >= viewport_size.x - edge_pan_margin:
+	elif mouse_position.x >= visible_rect.end.x - edge_pan_margin:
 		direction.x += 1.0
-	if mouse_position.y <= edge_pan_margin:
+	if mouse_position.y <= visible_rect.position.y + edge_pan_margin:
 		direction.y -= 1.0
-	elif mouse_position.y >= viewport_size.y - edge_pan_margin:
+	elif mouse_position.y >= visible_rect.end.y - edge_pan_margin:
 		direction.y += 1.0
 	return direction
 
