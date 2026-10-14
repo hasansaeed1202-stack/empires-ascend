@@ -22,6 +22,12 @@ Run the automated foundation smoke test:
 godot --headless --path . --scene res://tests/foundation_test.tscn
 ```
 
+Run the resource economy regression test:
+
+```powershell
+godot --headless --path . --scene res://tests/resource_store_test.tscn
+```
+
 Run the project and inspect parser/runtime errors:
 
 ```powershell
